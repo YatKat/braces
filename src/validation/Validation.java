@@ -8,17 +8,23 @@ package validation;
 
 public class Validation {
 
-    public static boolean checkBrackets(String data){
+    public static boolean checkBrackets(String data) {
         int count = 0;
-        if(data.contains("(") || data.contains(")")){
-            for(int i = 0; i < data.length(); i++){
-                if(data.charAt(i) == '('){
-                    count++;
-                }else if(data.charAt(i) == ')'){
-                    count--;
-                }
+
+        if(data == null){
+            return true;
+        }
+
+        for (int i = 0; i < data.length(); i++) {
+            if (data.charAt(i) == '(') {
+                count++;
+            } else if (data.charAt(i) == ')') {
+                count--;
             }
-        }else return true;
+            if(count < 0){
+                return false;
+            }
+        }
         return count == 0;
     }
 }
